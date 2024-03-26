@@ -12,7 +12,7 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import Button from "../Button";
-import useLoginModal from "@/app/hooks/useLoginModal copy";
+import useLoginModal from "@/app/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
 
 const LoginModal = () => {
