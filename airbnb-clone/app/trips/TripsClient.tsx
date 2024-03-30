@@ -30,7 +30,9 @@ const TripsClient = ({ reservations, currentUser }: TripsClientProps) => {
         .catch((error) => {
           toast.error(error?.response?.data?.error);
         })
-        .finally(() => setDeletingId(""));
+        .finally(() => {
+          setDeletingId("");
+        });
     },
     [router]
   );
