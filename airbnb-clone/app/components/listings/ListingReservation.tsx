@@ -37,11 +37,7 @@ const ListingReservation = ({
       />
       <hr />
       <div className=" p-4">
-        <Button
-          disabled={disabled}
-          label="Reserved"
-          onClick={onSubmit}
-        ></Button>
+        <Button disabled={disabled} label="Reserve" onClick={onSubmit}></Button>
       </div>
       <div className=" p-4 flex flex-row items-center justify-between font-semibold  text-lg">
         <div>Total</div>
