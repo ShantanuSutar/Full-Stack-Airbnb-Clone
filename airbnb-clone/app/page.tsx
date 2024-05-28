@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import getCurrentUser from "./actions/getCurrentUser";
 import getListings, { IListingParams } from "./actions/getListings";
 import ClientOnly from "./components/ClientOnly";
@@ -7,12 +6,14 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
-  listings: any[];
-  currentUser: any;
   searchParams: IListingParams;
 }
 
-const Home = ({ listings, currentUser, searchParams }: HomeProps) => {
+const Home = async ({ searchParams }: HomeProps) => {
+  // Fetch listings and current user data directly in the component
+  const listings = await getListings(searchParams);
+  const currentUser = await getCurrentUser();
+
   if (listings.length === 0) {
     return (
       <ClientOnly>
@@ -36,20 +37,6 @@ const Home = ({ listings, currentUser, searchParams }: HomeProps) => {
       </Container>
     </ClientOnly>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const searchParams = context.query as IListingParams;
-  const listings = await getListings(searchParams);
-  const currentUser = await getCurrentUser();
-
-  return {
-    props: {
-      listings,
-      currentUser,
-      searchParams,
-    },
-  };
 };
 
 export default Home;
