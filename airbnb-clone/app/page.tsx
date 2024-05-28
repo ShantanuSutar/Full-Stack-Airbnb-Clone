@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import getCurrentUser from "./actions/getCurrentUser";
 import getListings, { IListingParams } from "./actions/getListings";
 import ClientOnly from "./components/ClientOnly";
@@ -6,13 +7,23 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 
 interface HomeProps {
-  searchParams: IListingParams;
+  initialListings: Listing[];
 }
 
-const Home = async ({ searchParams }: HomeProps) => {
-  // Fetch listings and current user data directly in the component
-  const listings = await getListings(searchParams);
-  const currentUser = await getCurrentUser();
+const Home = ({ initialListings }: HomeProps) => {
+  const [listings, setListings] = useState(initialListings);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const listingsData = await getListings();
+      setListings(listingsData);
+      const currentUserData = await getCurrentUser();
+      setCurrentUser(currentUserData);
+    }
+
+    fetchData();
+  }, []);
 
   if (listings.length === 0) {
     return (
