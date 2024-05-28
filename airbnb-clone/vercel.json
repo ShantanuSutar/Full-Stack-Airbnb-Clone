@@ -1,0 +1,8 @@
+{
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_PRISMA_CLIENT_ENGINE_TYPE": "binary",
+      "PRISMA_GENERATE_SKIP_AUTOGEN_WARNING": "true"
+    }
+  }
+}
