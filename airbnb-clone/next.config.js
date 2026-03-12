@@ -7,6 +7,10 @@ const nextConfig = {
       "res.cloudinary.com",
     ],
   },
+  // Fix for MongoDB connection in production
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client'],
+  },
 };
 
 module.exports = nextConfig;
