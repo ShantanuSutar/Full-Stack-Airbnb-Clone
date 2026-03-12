@@ -7,11 +7,14 @@ import ListingCard from "./components/listings/ListingCard";
 import getCurrentUser from "./actions/getCurrentUser";
 
 interface PageProps {
-  searchParams: IListingParams;
+  searchParams: Promise<IListingParams>;
 }
 
+export const dynamic = 'force-dynamic';
+
 const Page = async ({ searchParams }: PageProps) => {
-  const listings = await getListings(searchParams);
+  const params = await searchParams;
+  const listings = await getListings(params);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
