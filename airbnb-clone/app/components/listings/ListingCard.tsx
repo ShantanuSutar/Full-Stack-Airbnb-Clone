@@ -32,6 +32,19 @@ const ListingCard = ({
 
   const location = getByValue(data.locationValue);
 
+  // Fallback for location display if country lookup fails
+  const locationDisplay = useMemo(() => {
+    if (location?.label) {
+      return `${location.region}, ${location.label}`;
+    }
+    // If no match found, extract from the locationValue string
+    const parts = data.locationValue.split(',');
+    if (parts.length >= 2) {
+      return `${parts[parts.length - 2].trim()}, ${parts[parts.length - 1].trim()}`;
+    }
+    return data.locationValue;
+  }, [location, data.locationValue]);
+
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
@@ -83,7 +96,7 @@ const ListingCard = ({
           className=" font-semibold
          text-lg"
         >
-          {location?.region}, {location?.label}
+          {locationDisplay}
         </div>
         <div className=" font-light text-neutral-500">
           {reservartionDate || data.category}
