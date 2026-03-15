@@ -7,6 +7,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "images.unsplash.com",
       "i.pravatar.cc",
+      "cdn.pixabay.com",
     ],
     remotePatterns: [
       {
@@ -16,6 +17,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.pixabay.com',
       },
     ],
   },

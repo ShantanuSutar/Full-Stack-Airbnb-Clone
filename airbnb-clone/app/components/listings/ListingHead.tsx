@@ -22,12 +22,15 @@ const ListingHead = ({
 }: ListingHeadProps) => {
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
+  
+  // Fallback location display
+  const locationDisplay = location?.label || locationValue;
 
   return (
     <>
       <Heading
         title={title}
-        subtitle={`${location?.region}, ${location?.label}`}
+        subtitle={locationDisplay}
       />
       <div className=" w-full h-[60vh] overflow-hidden rounded-xl relative">
         <Image
