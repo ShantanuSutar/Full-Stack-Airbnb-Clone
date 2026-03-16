@@ -402,7 +402,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For issues, questions, or contributions:
 - 🐛 Open an issue on GitHub
-- 📧 Email: your.email@example.com
+- 📧 Email: shantanusutar17@gmail.com
 - 💬 Discussions: GitHub Discussions tab
 
 ## 🎓 Learning Resources
